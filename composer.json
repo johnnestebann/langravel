@@ -1,5 +1,5 @@
 {
-    "name": "laravelista/loki",
+    "name": "proycer/laravel-localization",
     "description": "Laravel localization done right.",
     "keywords": [
         "laravel",
@@ -7,6 +7,11 @@
     ],
     "license": "MIT",
     "authors": [
+        {
+            "name": "John Astete",
+            "email": "john.astete@proycer.com.ar",
+            "homepage": "https://proycer.com.ar"
+        }
         {
             "name": "Mario Bašić",
             "email": "mario@laravelista.hr",
@@ -21,13 +26,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Laravelista\\Loki\\": "src/"
+            "Proycer\\LaravelLocalization\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Laravelista\\Loki\\ServiceProvider"
+                "Proycer\\LaravelLocalization\\ServiceProvider"
             ]
         }
     }
