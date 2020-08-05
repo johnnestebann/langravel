@@ -1,8 +1,6 @@
-# Loki
+# Langravel
 
-Laravel localization done right.
-
-[![Become a Patron](https://img.shields.io/badge/Become%20a-Patron-f96854.svg?style=for-the-badge)](https://www.patreon.com/laravelista)
+Multi Localization for Laravel. The Easy Way
 
 ## Overview
 
@@ -10,10 +8,9 @@ If you are building a multilingual website and you need URL management then this
 
 **It supports route caching out of the box.**
 
-Before, I was using [mcamara/laravel-localization
-](https://github.com/mcamara/laravel-localization) to handle this, but I really really needed route caching to work. So, I created this package and simplified the whole setup and integration process.
+This package simplified the whole setup and integration process about localization.
 
-Whatever `mcamara/laravel-localization` package can do, Loki can do too, but better.
+Whatever `mcamara/laravel-localization` package can do, Langravel can do too, but better.
 
 ### Features
 
@@ -33,26 +30,26 @@ Whatever `mcamara/laravel-localization` package can do, Loki can do too, but bet
 From the command line:
 
 ```
-composer require laravelista/loki
+composer require johnnestebann/langravel
 ```
 
-Then, add the `Loki` trait to your `RouteServiceProvider` class:
+Then, add the `Langravel` trait to your `RouteServiceProvider` class:
 
 ```
-use Laravelista\Loki\Loki;
+use Johnnestebann\Langravel\Langravel;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    use Loki;
+    use Langravel;
 }
 ```
 
 > If you don't intend to use translated URLs (by default it is set to false) then publish the route file with the command bellow. Otherwise be sure to publish the config file, set `useTranslatedUrls` to `true` and create appropriate route files `{locale}.web.php`.
 
-Publish the localized routes file `loki.web.php` to your `/routes` directory:
+Publish the localized routes file `langravel.web.php` to your `/routes` directory:
 
 ```
-php artisan vendor:publish --provider="Laravelista\Loki\ServiceProvider" --tag=route
+php artisan vendor:publish --provider="Johnnestebann\Langravel\ServiceProvider" --tag=route
 ```
 
 Now, add `$this->mapLocalizedWebRoutes();` to the `map` method in the `RouteServiceProvider`.
@@ -61,7 +58,7 @@ Now, add `$this->mapLocalizedWebRoutes();` to the `map` method in the `RouteServ
 
 ---
 
-Put your localized routes in `/routes/loki.web.php` file. If you are using translated URLs create a route file for each locale `{locale}.web.php` (eg. `en.web.php`). Your non localized routes can remain in the `/routes/web.php` file. To access non localized routes use `URL::getNonLocalizedRoute` or `URL::getNonLocalizedUrl`. See the helpers chapter bellow to find out more.
+Put your localized routes in `/routes/langravel.web.php` file. If you are using translated URLs create a route file for each locale `{locale}.web.php` (eg. `en.web.php`). Your non localized routes can remain in the `/routes/web.php` file. To access non localized routes use `URL::getNonLocalizedRoute` or `URL::getNonLocalizedUrl`. See the helpers chapter bellow to find out more.
 
 **That's it!** View the configuration chapter bellow to configure your preferences.
 
@@ -70,10 +67,10 @@ Put your localized routes in `/routes/loki.web.php` file. If you are using trans
 Publish the config file with:
 
 ```
-php artisan vendor:publish --provider="Laravelista\Loki\ServiceProvider" --tag=config
+php artisan vendor:publish --provider="Johnnestebann\Langravel\ServiceProvider" --tag=config
 ```
 
-You will find it under `config/loki.php`.
+You will find it under `config/langravel.php`.
 
 #### `supportedLocales` [array]
 
@@ -170,7 +167,7 @@ Route::resource('novosti', 'NewsController')->only(['show'])->names([
 
 It will return the URL for the given route name to the route located in `/routes/web.php` file.
 
-**Don't use the same route names for routes in `web.php` and `loki.web.php`.**
+**Don't use the same route names for routes in `web.php` and `langravel.web.php`.**
 
 
 #### `URL::getNonLocalizedUrl($path, $extra = [], $secure = null)`
@@ -210,7 +207,7 @@ Use this blade template snippet to enable users to change the language:
 
 ```
 <ul>
-    @foreach(config('loki.supportedLocales') as $locale)
+    @foreach(config('langravel.supportedLocales') as $locale)
         <li>
             <a rel="alternate" hreflang="{{ $locale }}" href="{{ URL::getLocalizedRoute($locale) }}">
                 {{ $locale }}
@@ -227,7 +224,7 @@ _You can modify the template however you want._
 Add this code to your view file inside `@php {your code here} @endphp` block or inside a controller method where you want to translate slugs:
 
 ```
-foreach (config('loki.supportedLocales') as  $locale) {
+foreach (config('langravel.supportedLocales') as  $locale) {
     URL::overrideParameters($locale, $model->{'slug_'.$locale});
 }
 ```
@@ -236,18 +233,10 @@ Replace `$model->{'slug_'.$locale}` with whatever logic you use to get the trans
 
 This method will override the route parameters for given locale, so that the language switcher will return correct URLs with translated slugs.
 
-## Sponsors & Backers
-
-I would like to extend my thanks to the following sponsors & backers for funding my open-source journey. If you are interested in becoming a sponsor or backer, please visit the [Backers page](https://mariobasic.com/backers).
-
 ## Contributing
 
-Thank you for considering contributing to Loki! The contribution guide can be found [Here](https://mariobasic.com/contributing).
-
-## Code of Conduct
-
-In order to ensure that the open-source community is welcoming to all, please review and abide by the [Code of Conduct](https://mariobasic.com/code-of-conduct).
+Thank you for considering contributing to Langravel!.
 
 ## License
 
-Loki is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Langravel is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).

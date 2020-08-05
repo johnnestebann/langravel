@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravelista\Loki;
+namespace Johnnestebann\Langravel;
 
 use Illuminate\Support\Str;
 use \Illuminate\Routing\UrlGenerator as LaravelUrlGenerator;
@@ -100,15 +100,13 @@ class UrlGenerator extends LaravelUrlGenerator
         if (is_null($name)) {
             $route = request()->route();
 
-            // if the route is not found return dummy Url (404)
             if (is_null($route)) {
                 return $this->getLocalizedUrl($locale, request()->path());
             }
 
             $name = $route->getName();
             $prefix = request()->segment(1);
-            // This is a fix for Laravel 6.
-            // TODO: Maybe this is not needed anymore...
+            
             $parameters = array_key_exists('data', $route->parameters) ? $route->parameters['data'] : $route->parameters;
 
             if (!is_null($prefix)) {
@@ -151,8 +149,8 @@ class UrlGenerator extends LaravelUrlGenerator
      */
     protected function hideDefaultLocale($locale)
     {
-        if (config('loki.hideDefaultLocale') == true and
-            $locale == config('loki.defaultLocale')) {
+        if (config('langravel.hideDefaultLocale') == true and
+            $locale == config('langravel.defaultLocale')) {
             return true;
         }
 

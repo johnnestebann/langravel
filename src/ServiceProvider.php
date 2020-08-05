@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravelista\Loki;
+namespace Johnnestebann\Langravel;
 
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 use Illuminate\Routing\UrlGenerator as LaravelUrlGenerator;
@@ -9,23 +9,22 @@ class ServiceProvider extends LaravelServiceProvider
 {
     public function boot()
     {
-        // $this->app['router']->pushMiddlewareToGroup('web', Heimdall::class);
-        $this->app['router']->aliasMiddleware('loki', Middleware::class);
+        $this->app['router']->aliasMiddleware('langravel', Middleware::class);
 
         $this->publishes([
-            __DIR__ . '/../config/loki.php' => config_path('loki.php'),
+            __DIR__ . '/../config/langravel.php' => config_path('langravel.php'),
         ], 'config');
 
         $this->publishes([
-            __DIR__ . '/../routes/loki.web.php' => base_path('routes/loki.web.php'),
+            __DIR__ . '/../routes/langravel.web.php' => base_path('routes/langravel.web.php'),
         ], 'route');
     }
 
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/loki.php',
-            'loki'
+            __DIR__ . '/../config/langravel.php',
+            'langravel'
         );
 
         $this->app->extend(LaravelUrlGenerator::class, function ($generator) {

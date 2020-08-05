@@ -1,6 +1,6 @@
 {
-    "name": "proycer/laravel-localization",
-    "description": "Laravel localization done right.",
+    "name": "johnnestebann/langravel",
+    "description": "Multi Localization for Laravel. The Easy Way",
     "keywords": [
         "laravel",
         "localization"
@@ -26,13 +26,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Proycer\\LaravelLocalization\\": "src/"
+            "Johnnestebann\\Langravel\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Proycer\\LaravelLocalization\\ServiceProvider"
+                "Johnnestebann\\Langravel\\ServiceProvider"
             ]
         }
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravelista\Loki;
+namespace Johnnestebann\Langravel;
 
 use Closure;
 use Illuminate\Http\Request;
@@ -21,16 +21,16 @@ class Middleware
         $prefix = $request->segment(1);
 
         // Hide default locale /en to /
-        if (config('loki.hideDefaultLocale') == true and $prefix == config('loki.defaultLocale')) {
+        if (config('langravel.hideDefaultLocale') == true and $prefix == config('langravel.defaultLocale')) {
             return redirect()->route(Str::replaceFirst($prefix . '.', '', $route->getName()), $route->parameters);
         }
 
         // Redirect / to default locale /en
-        if (config('loki.hideDefaultLocale') == false and is_null($prefix)) {
+        if (config('langravel.hideDefaultLocale') == false and is_null($prefix)) {
             return redirect()->route($route->getName(), $route->parameters);
         }
 
-        if (in_array($prefix, config('loki.supportedLocales'))) {
+        if (in_array($prefix, config('langravel.supportedLocales'))) {
             app()->setLocale($prefix);
         }
 
